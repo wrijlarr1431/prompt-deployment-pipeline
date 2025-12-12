@@ -1,0 +1,13 @@
+Welcome to Pixel Learning Co., {student_name}!
+
+We're excited to have you join our {course_name} course. This course will help you master {topic} through hands-on projects and AI-powered learning experiences.
+
+Your learning journey begins on {start_date}. Here are your first steps:
+1. Complete your profile setup
+2. Review the course syllabus
+3. Join our community forum
+
+If you have any questions, our support team is here to help at support@pixellearning.co.
+
+Best regards,
+The Pixel Learning Team
