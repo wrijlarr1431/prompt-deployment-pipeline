@@ -1,0 +1,16 @@
+{
+  "template": "welcome_email.txt",
+  "variables": {
+    "student_name": "Jordan Smith",
+    "course_name": "AI Automation Fundamentals",
+    "duration": "8 weeks",
+    "start_date": "January 15, 2025",
+    "orientation_date": "January 12, 2025"
+  },
+  "model_params": {
+    "max_tokens": 2000,
+    "temperature": 0.7
+  },
+  "output_file": "welcome_jordan.html",
+  "instruction": "Convert this welcome email into a beautifully formatted HTML page. Use a modern, professional design with a clean layout. Include a header with the Pixel Learning Co. branding colors (use shades of blue and white). Make the course details stand out in a highlighted box. Use friendly, welcoming typography and ensure the page is mobile-responsive. Add subtle animations or styling to make it engaging."
+}
