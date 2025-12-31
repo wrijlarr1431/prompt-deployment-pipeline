@@ -1,0 +1,47 @@
+name: Production Prompt Deployment
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'prompts/**'
+      - 'prompt_templates/**'
+      - 'scripts/**'
+
+jobs:
+  deploy-prod:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+      
+      - name: Process prompts for PROD
+        env:
+          S3_BUCKET_PROD: ${{ secrets.S3_BUCKET_PROD }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+        run: |
+          python scripts/process_prompt.py prod
+      
+      - name: Production deployment complete
+        run: |
+          echo "✅ Production deployment successful!"
+          echo "🌐 Content available at: http://${{ secrets.S3_BUCKET_PROD }}.s3-website-${{ secrets.AWS_REGION }}.amazonaws.com/prod/outputs/"
