@@ -56,3 +56,58 @@ Use `{variable_name}` for placeholders.
   "output_file": "summary_ai_fundamentals.html",
   "instruction": "Format as HTML with proper structure"
 }
+
+
+3. Create a pull request:
+
+git checkout -b add-course-summary
+git add prompts/ prompt_templates/
+git commit -m "Add course summary prompt"
+git push origin add-course-summary
+
+4. Review beta output from the PR comment link
+
+5. Merge to deploy to production
+
+Workflow Triggers
+Event	Workflow	Environment	S3 Prefix
+Pull Request	on_pull_request.yml	Beta	beta/
+Merge to main	on_merge.yml	Production	prod/
+🔍 Viewing Generated Content
+Beta
+http://[S3_BUCKET_BETA].s3-website-[AWS_REGION].amazonaws.com/beta/outputs/
+Production
+http://[S3_BUCKET_PROD].s3-website-[AWS_REGION].amazonaws.com/prod/outputs/
+
+📁 Project Structure
+.
+├── .github/
+│   └── workflows/
+│       ├── on_pull_request.yml    # Beta deployment
+│       └── on_merge.yml            # Prod deployment
+├── prompts/                        # Prompt configurations
+│   └── welcome_prompt.json
+├── prompt_templates/               # Reusable templates
+│   └── welcome_email.txt
+├── outputs/                        # Generated content (local)
+├── scripts/
+│   └── process_prompt.py          # Main processing script
+├── requirements.txt
+└── README.md
+
+🔒 Security Notes
+Never commit AWS credentials
+Use GitHub secrets for all sensitive values
+IAM user should have minimal required permissions
+S3 buckets use public read for static hosting only
+
+🐛 Troubleshooting
+Bedrock Access Denied
+Verify model access is enabled in Bedrock console
+Check IAM permissions include bedrock:InvokeModel
+S3 Upload Failed
+Verify bucket names in GitHub secrets
+Check IAM permissions include s3:PutObject
+Workflow Not Triggering
+Ensure changes are in prompts/, prompt_templates/, or scripts/
+Check workflow file syntax
