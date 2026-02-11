@@ -2,7 +2,7 @@
   "template": "welcome_email.txt",
   "variables": {
     "student_name": "Alex Johnson",
-    "course_name": "AI Automation Fundamentals",
+    "course_name": "AI Automation Mastery",
     "duration": "8 weeks",
     "start_date": "January 15, 2025",
     "orientation_date": "January 12, 2025"
