@@ -1,7 +1,7 @@
 {
   "template": "welcome_email.txt",
   "variables": {
-    "student_name": "Jordan Smith",
+    "student_name": "Alex Johnson",
     "course_name": "AI Automation Fundamentals",
     "duration": "8 weeks",
     "start_date": "January 15, 2025",
