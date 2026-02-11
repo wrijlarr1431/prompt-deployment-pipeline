@@ -73,6 +73,7 @@ Workflow Triggers
 Event	Workflow	Environment	S3 Prefix
 Pull Request	on_pull_request.yml	Beta	beta/
 Merge to main	on_merge.yml	Production	prod/
+
 🔍 Viewing Generated Content
 Beta
 http://[S3_BUCKET_BETA].s3-website-[AWS_REGION].amazonaws.com/beta/outputs/
